@@ -1,8 +1,9 @@
 from tkinter import *
+from tkinter.filedialog import askopenfilename
 
 root = Tk()
 root.title("Fred's Final Project")  
-root.geometry("500x500")
+root.geometry("400x600")
 
 def mainMenu():
   mainFrame = LabelFrame(root, text="Main Menu", padx=30, pady = 30)
@@ -28,16 +29,40 @@ def verifyISBN10():
   verifyISBN10_Frame = LabelFrame(root, text="Verify ISBN 10", padx=30, pady = 30)
   verifyISBN10_Frame.pack()
 
+  openFile = Button(verifyISBN10_Frame, text = "Open ISBN List", command = lambda: askopenfilename())
+  openFile.pack()
+
+  back = Button(verifyISBN10_Frame, text = "Back", command = lambda: [verifyISBN10_Frame.forget(), mainMenu()])
+  back.pack()
+
 def verifyISBN13():
   verifyISBN13_Frame = LabelFrame(root, text="Verify ISBN 13", padx=30, pady = 30)
   verifyISBN13_Frame.pack()
+
+  openFile = Button(verifyISBN13_Frame, text = "Open ISBN List", command = lambda: askopenfilename())
+  openFile.pack()
+
+  back = Button(verifyISBN13_Frame, text = "Back", command = lambda: [verifyISBN13_Frame.forget(), mainMenu()])
+  back.pack()
   
 def convertI10toI13():
   convertI10toI13_Frame = LabelFrame(root, text="Convert I10 to I13", padx=30, pady = 30)
   convertI10toI13_Frame.pack()
 
+  openFile = Button(convertI10toI13_Frame, text = "Open ISBN List", command = lambda: askopenfilename())
+  openFile.pack()
+  
+  back = Button(convertI10toI13_Frame, text = "Back", command = lambda: [convertI10toI13_Frame.forget(), mainMenu()])
+  back.pack()
+
 def convertI13toI10():
   convertI10toI10_Frame = LabelFrame(root, text="Convert I13 to I10", padx=30, pady = 30)
   convertI10toI10_Frame.pack()
+
+  openFile = Button(convertI10toI10_Frame, text = "Open ISBN List", command = lambda: askopenfilename())
+  openFile.pack()
+
+  back = Button(convertI10toI10_Frame, text = "Back", command = lambda: [convertI10toI10_Frame.forget(), mainMenu()])
+  back.pack()
   
 mainMenu()
