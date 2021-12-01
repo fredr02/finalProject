@@ -46,13 +46,13 @@ def openFile(itemName, labelText, itemFrame):
     saveFile = ""
     for line in file:
         if itemName == "Verify the check digit of an ISBN-10":
-            saveFile = saveFile + verifyISBN10(line)
+            saveFile += verifyISBN10(line)
         elif itemName == "Verify the check digit of an ISBN-13":
-            saveFile = saveFile + verifyISBN13(line)
+            saveFile += verifyISBN13(line)
         elif itemName == "Convert an ISBN-10 to an ISBN-13":
-            saveFile = saveFile + verifyISBN10(line)
+            saveFile += verifyISBN10(line)
         elif itemName == "Convert an ISBN-13 to an ISBN-10":
-            saveFile = saveFile + verifyISBN10(line)
+            saveFile += verifyISBN10(line)
     print(saveFile)
 
     labelText.set("Ready to save!")
