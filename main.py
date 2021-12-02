@@ -73,15 +73,28 @@ def verifyISBN10(isbn):
     isbn[9].lower()
     # Return modified line depending on correctness
     if checkDigit == 10 and isbn[9].lower() == "x":
-        return (isbn).rstrip("\n") + " Correct ISBN10 Digit\n"
+        return (isbn).rstrip("\n") + " Correct Check ISBN10 Digit\n"
     if (checkDigit) == int(isbn[9]):
-        return (isbn).rstrip("\n") + " Correct ISBN10 Digit\n"
+        return (isbn).rstrip("\n") + " Correct Check ISBN10 Digit\n"
     else:
-        return (isbn).rstrip("\n") + " Incorrect ISBN10 Digit\n"
+        return (isbn).rstrip("\n") + " Incorrect Check ISBN10 Digit\n"
 
 
 def verifyISBN13(isbn):
-    return isbn + "\n"
+    # Clean ISBN numbers
+    isbn.replace("-", "").replace(" ", "")
+
+    result = 0
+    for i in range(12):
+        if i % 2 == 0:
+            result = result + int(isbn[i])
+        else:
+            result = result + int(isbn[i]) * 3
+
+    if 10 - (result % 10) == int(isbn[12]):
+        return (isbn).rstrip("\n") + " Correct ISBN13 Digit\n"
+    else:
+        return (isbn).rstrip("\n") + " Incorrect ISBN13 Check Digit\n"
 
 
 def convert10to13(isbn):
