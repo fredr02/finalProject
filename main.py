@@ -61,7 +61,23 @@ def openFile(itemName, labelText, itemFrame):
 
 
 def verifyISBN10(isbn):
-    return (isbn).rstrip("\n") + " Test\n"
+    # Clean ISBN numbers
+    isbn.replace("-", "").replace(" ", "")
+
+    result = 0
+    for i in range(9):
+        result = result + int(isbn[i]) * (10 - i)
+
+    checkDigit = 11 - (result % 11)
+
+    isbn[9].lower()
+    # Return modified line depending on correctness
+    if checkDigit == 10 and isbn[9].lower() == "x":
+        return (isbn).rstrip("\n") + " Correct ISBN10 Digit\n"
+    if (checkDigit) == int(isbn[9]):
+        return (isbn).rstrip("\n") + " Correct ISBN10 Digit\n"
+    else:
+        return (isbn).rstrip("\n") + " Incorrect ISBN10 Digit\n"
 
 
 def verifyISBN13(isbn):
