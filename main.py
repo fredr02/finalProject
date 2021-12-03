@@ -50,9 +50,9 @@ def openFile(itemName, labelText, itemFrame):
         elif itemName == "Verify the check digit of an ISBN-13":
             saveFile += verifyISBN13(line)
         elif itemName == "Convert an ISBN-10 to an ISBN-13":
-            saveFile += verifyISBN10(line)
+            saveFile += convert10to13(line)
         elif itemName == "Convert an ISBN-13 to an ISBN-10":
-            saveFile += verifyISBN10(line)
+            saveFile += convert13to10(line)
     print(saveFile)
 
     labelText.set("Ready to save!")
@@ -98,7 +98,17 @@ def verifyISBN13(isbn):
 
 
 def convert10to13(isbn):
-    return isbn + "\n"
+    isbn.replace("-", "").replace(" ", "")
+    preCheckDigitISBN13 = "978" + isbn[:-1]
+
+    result = 0
+    for i in range(12):
+        if i % 2 == 0:
+            result = result + int(preCheckDigitISBN13[i])
+        else:
+            result = result + int(preCheckDigitISBN13[i]) * 3
+    final = preCheckDigitISBN13 + str(10 - (result % 10))
+    return final + " Calculated ISBN13 Number\n"
 
 
 def convert13to10(isbn):
