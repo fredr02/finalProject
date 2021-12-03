@@ -112,7 +112,18 @@ def convert10to13(isbn):
 
 
 def convert13to10(isbn):
-    return isbn + "\n"
+    isbn.replace("-", "").replace(" ", "")
+    isbn = isbn[3:12]
+
+    result = 0
+    for i in range(9):
+        result = result + int(isbn[i]) * (10 - i)
+
+    checkDigit = 11 - (result % 11)
+    if checkDigit == 10:
+        checkDigit = "x"
+
+    return isbn + checkDigit + " Calculated ISBN10 Number\n"
 
 
 mainMenu()
