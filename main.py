@@ -126,7 +126,7 @@ def convert13to10(isbn):
     if checkDigit == 10:
         checkDigit = "x"
 
-    return isbn + checkDigit + " Calculated ISBN10 Number\n"
+    return isbn + str(checkDigit) + " Calculated ISBN10 Number\n"
 
 
 mainMenu()
