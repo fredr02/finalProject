@@ -48,7 +48,7 @@ def item_Menu(itemName):
 
 
 def openFile(itemName, labelText, itemFrame):
-    file = open(askopenfilename())
+    file = open(askopenfilename(filetypes=[("Text", '.txt')]))
     saveFile = ""
     for line in file:
         isbn = line.replace("-", "").replace(" ", "")
