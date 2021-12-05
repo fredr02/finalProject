@@ -51,7 +51,7 @@ def openFile(itemName, labelText, itemFrame):
     file = open(askopenfilename(filetypes=[("Text", '.txt')]))
     saveFile = ""
     for line in file:
-        isbn = line.replace("-", "").replace(" ", "")
+        isbn = line.replace("-", "").replace(" ", "").replace("\n", "")
         if itemName == "Verify the check digit of an ISBN-10":
             saveFile += verifyISBN10(isbn)
         elif itemName == "Verify the check digit of an ISBN-13":
