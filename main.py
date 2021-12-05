@@ -51,15 +51,15 @@ def openFile(itemName, labelText, itemFrame):
     file = open(askopenfilename())
     saveFile = ""
     for line in file:
-        line.replace("-", "").replace(" ", "")
+        isbn = line.replace("-", "").replace(" ", "")
         if itemName == "Verify the check digit of an ISBN-10":
-            saveFile += verifyISBN10(line)
+            saveFile += verifyISBN10(isbn)
         elif itemName == "Verify the check digit of an ISBN-13":
-            saveFile += verifyISBN13(line)
+            saveFile += verifyISBN13(isbn)
         elif itemName == "Convert an ISBN-10 to an ISBN-13":
-            saveFile += convert10to13(line)
+            saveFile += convert10to13(isbn)
         elif itemName == "Convert an ISBN-13 to an ISBN-10":
-            saveFile += convert13to10(line)
+            saveFile += convert13to10(isbn)
 
     # Change lable and add save button
     labelText.set("Ready to save!")
@@ -68,6 +68,8 @@ def openFile(itemName, labelText, itemFrame):
 
 
 def verifyISBN10(isbn):
+    if(len(isbn) != 10):
+        return (isbn).rstrip("\n") + " Invalid Input\n"
     # Calculate checkDigit
     result = 0
     for i in range(9):
@@ -84,6 +86,8 @@ def verifyISBN10(isbn):
 
 
 def verifyISBN13(isbn):
+    if(len(isbn) != 13):
+        return (isbn).rstrip("\n") + " Invalid Input\n"
     # Calculate check digit
     result = 0
     for i in range(12):
@@ -99,6 +103,8 @@ def verifyISBN13(isbn):
 
 
 def convert10to13(isbn):
+    if(len(isbn) != 10):
+        return (isbn).rstrip("\n") + " Invalid Input\n"
     # Add first three numbers and remove original check digit
     preCheckDigitISBN13 = "978" + isbn[:-1]
 
@@ -114,6 +120,8 @@ def convert10to13(isbn):
 
 
 def convert13to10(isbn):
+    if(len(isbn) != 13):
+        return (isbn).rstrip("\n") + " Invalid Input\n"
     # Cut out first three numbers and check digit
     isbn = isbn[3:12]
 
