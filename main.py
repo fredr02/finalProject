@@ -63,7 +63,7 @@ def openFile(itemName, labelText, itemFrame):
 
     # Change lable and add save button
     labelText.set("Ready to save!")
-    Button(itemFrame, text="Save File", command=lambda: [open(asksaveasfilename(), "w").write(saveFile), labelText.set("File Was Saved")]).grid(
+    Button(itemFrame, text="Save File", command=lambda: [open(asksaveasfilename(defaultextension=".txt", filetypes=[("Text", '.txt')]), "w").write(saveFile), labelText.set("File Was Saved")]).grid(
         row=2, column=0, sticky=N)
 
 
